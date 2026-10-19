@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="BurgerHouse – the best of Burgers, Pizza, and Greens, all in one great place." />
+    <title>BurgerHouse | Bestell App</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+  </head>
+
+  <body onload="init()">
+    <header class="header">
+      <div class="header-inner content-width">
+        <a class="app-logo" href="./index.html">
+          <img src="./assets/img/app-logo.svg" alt="" />
+          <span class="app-logo-text">Bestell<strong>App</strong></span>
+        </a>
+        <button class="menu-button" aria-label="Menu (placeholder)">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="main content-width">
+      <section class="restaurant-hero">
+        <img class="hero-image" src="./assets/img/hero.svg" alt="Burgers and pizzas on a wooden table" />
+        <img class="restaurant-logo" src="./assets/img/restaurant-logo.svg" alt="BurgerHouse logo" />
+      </section>
+
+      <section class="restaurant-info">
+        <div class="restaurant-title">
+          <h1 class="restaurant-name"><span class="highlight">Burger</span>House</h1>
+          <span class="rating-badge" aria-label="Rating 4.5 out of 5 stars">
+            <span class="stars">★★★★<span class="star-half">★</span></span>
+            4,5 <span class="rating-count">(1.248)</span>
+          </span>
+        </div>
+        <p class="restaurant-description">The best of Burgers, Pizza, and Greens, all in one great place.</p>
+        <ul class="delivery-info">
+          <li>🕒 25–40 min</li>
+          <li>🛵 Delivery fee 4,99 €</li>
+          <li>📍 Musterstraße 12, Berlin</li>
+        </ul>
+      </section>
+
+      <div class="category-nav-wrapper">
+        <button class="nav-arrow" onclick="scrollCategoryNav(-1)" aria-label="Scroll categories left">‹</button>
+        <nav id="categoryNav" class="category-nav" aria-label="Menu categories"></nav>
+        <button class="nav-arrow" onclick="scrollCategoryNav(1)" aria-label="Scroll categories right">›</button>
+      </div>
+
+      <div class="menu-layout">
+        <div id="menu" class="menu"></div>
+
+        <aside class="basket basket-desktop" aria-label="Basket">
+          <h2 class="basket-title">Your Basket</h2>
+          <div id="basketDesktop" class="basket-content"></div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner content-width">
+        <span>© 2026 BurgerHouse</span>
+        <a href="#">Imprint</a>
+        <a href="#">Cookie Preferences</a>
+      </div>
+    </footer>
+
+    <nav class="mobile-menu-bar" aria-label="Mobile navigation">
+      <a class="mobile-menu-item" href="#" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" /></svg>
+      </a>
+      <button class="mobile-menu-item" aria-label="Profile (placeholder)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg>
+      </button>
+      <a class="mobile-menu-item" href="#burger" aria-label="Go to menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6" /></svg>
+      </a>
+      <button class="mobile-menu-item mobile-basket-button" onclick="openBasketDialog()" aria-label="Open basket">
+        <span class="mobile-basket-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 1.9-1.4L21 8H6.2" />
+            <circle cx="10" cy="20" r="1.5" />
+            <circle cx="17" cy="20" r="1.5" />
+          </svg>
+          <span id="mobileBasketCount" class="mobile-basket-count">0</span>
+        </span>
+        <span id="mobileBasketTotal" class="mobile-basket-total">0,00 €</span>
+      </button>
+    </nav>
+
+    <dialog id="basketDialog" class="basket basket-dialog" onclick="closeOnBackdropClick(event)" aria-label="Basket">
+      <div class="basket-dialog-header">
+        <h2 class="basket-title">Your Basket</h2>
+        <button class="close-button" onclick="closeBasketDialog()" aria-label="Close basket">✕</button>
+      </div>
+      <div id="basketDialogContent" class="basket-content"></div>
+    </dialog>
+
+    <dialog id="orderConfirmation" class="confirmation-dialog" onclick="closeOnBackdropClick(event)">
+      <button class="close-button" onclick="closeOrderConfirmation()" aria-label="Close message">✕</button>
+      <span class="confirmation-icon" aria-hidden="true">🛵</span>
+      <p class="confirmation-title">Order confirmed!</p>
+      <p>Your food is on the way!</p>
+      <p class="confirmation-note">This was a test order – nothing will be delivered or charged.</p>
+    </dialog>
+
+    <script src="./js/db.js"></script>
+    <script src="./js/templates.js"></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
